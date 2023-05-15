@@ -10,7 +10,12 @@
   = javascript_importmap_tags
 %body
   %nav.bg-red-500.py-4.px-8.flex.justify-between.items-center
-    .text-xl.text-white.font-bold RED MAGIC
+    .flex
+      .text-xl.text-white.font-bold
+        RED MAGIC
+      %ul.flex.items-center.space-x-4
+        %li
+          = link_to 'Podcasts', podcasts_path, class: "text-white hover:bg-red-300 px-4 py-2 rounded"
     %ul.flex.items-center.space-x-4
       - if user_signed_in?
         %li
@@ -19,6 +24,6 @@
             = submit_tag 'Sign out', class: "text-white hover:bg-gray-300 px-4 py-2 rounded"
       - else
         %li
-          = link_to 'Sign in', new_user_session_path, class: "text-white hover:bg-gray-300 px-4 py-2 rounded"
+          = link_to 'Sign in', new_user_session_path, class: "text-white hover:bg-red-300 px-4 py-2 rounded"
   .container.mx-auto.p-4
     = yield
