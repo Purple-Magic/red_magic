@@ -8,11 +8,15 @@
   = stylesheet_link_tag "application", "data-turbo-track": "reload"
   = javascript_importmap_tags
 %body
-  %main.container.mx-auto.mt-28.px-5.flex
-    - if user_signed_in?
-      %form.sign-out-form{:action => destroy_user_session_path, :method => "post"}
-        = hidden_field_tag :_method, :delete
-        = submit_tag 'Sign out'
-    - else
-      = link_to 'Sign in', new_user_session_path
+  %nav.bg-red-500.py-4.px-8.flex.justify-between.items-center
+    .text-xl.text-white.font-bold RED MAGIC
+    %ul.flex.items-center.space-x-4
+      - if user_signed_in?
+        %li
+          %form.sign-out-form{:action => destroy_user_session_path, :method => "post"}
+            = hidden_field_tag :_method, :delete
+            = submit_tag 'Sign out', class: "text-white hover:bg-gray-300 px-4 py-2 rounded"
+      - else
+        %li
+          = link_to 'Sign in', new_user_session_path, class: "text-white hover:bg-gray-300 px-4 py-2 rounded"
     = yield
