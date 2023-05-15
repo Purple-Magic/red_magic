@@ -1,18 +1,23 @@
 %head
-  %title Wall
-  %meta{ content: "width=device-width,initial-scale=1", name: "viewport" }
+  %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %title RedMagic
+  %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
   = action_cable_meta_tag
   = csrf_meta_tags
   = csp_meta_tag
-  -# = stylesheet_link_tag "tailwind", "data-turbo-track": "reload"
-  %script{src: "https://cdn.tailwindcss.com"}
+  %script{ src: "https://cdn.tailwindcss.com" }
   = stylesheet_link_tag "application", "data-turbo-track": "reload"
   = javascript_importmap_tags
 %body
-  %nav.bg-gray-800
-    .max-w-7xl.mx-auto.px-4.sm:px-6.lg:px-8
-      .flex.items-center.justify-center.h-16
-        .flex-shrink-0
-          %a.text-white.font-bold.text-xl{:href => "#"} The Wall
-  %main.container.mx-auto.px-5.flex
-    = yield
+  %nav.bg-red-500.py-4.px-8.flex.justify-between.items-center
+    .text-xl.text-white.font-bold RED MAGIC
+    %ul.flex.items-center.space-x-4
+      - if user_signed_in?
+        %li
+          %form.sign-out-form{:action => destroy_user_session_path, :method => "post"}
+            = hidden_field_tag :_method, :delete
+            = submit_tag 'Sign out', class: "text-white hover:bg-gray-300 px-4 py-2 rounded"
+      - else
+        %li
+          = link_to 'Sign in', new_user_session_path, class: "text-white hover:bg-gray-300 px-4 py-2 rounded"
+  = yield
