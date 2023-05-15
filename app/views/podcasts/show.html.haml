@@ -1,9 +1,18 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @podcast.title
-
-= link_to 'Edit', edit_podcast_path(@podcast)
-\|
-= link_to 'Back', podcasts_path
+.flex.justify-between.mb-4
+  %h1.text-2xl.font-bold
+    = @podcast.title
+  .text-right.mt-4
+    %button.btn-edit.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.rounded{ href: edit_podcast_path(@podcast) }
+      Edit
+    %button.btn-delete.bg-orange-500.hover:bg-orange-700.text-white.font-bold.py-2.px-4.rounded{ href: @podcast, method: :delete, data: { confirm: 'Are sure?' } }
+      Destroy
+    %button.btn-delete.bg-gray-500.hover:bg-orange-700.text-white.font-bold.py-2.px-4.rounded{ href: @podcast, method: :delete, data: { confirm: 'Are sure?' } }
+      Back
+%table.min-w-full.bg-white.border.border-gray-200
+  %tbody
+    - @podcast.attributes.each do |(key, value)|
+      %tr
+        %td.px-4.py-2.border-b
+          = Podcast.human_attribute_name(key)
+        %td.px-4.py-2.border-b
+          = value
