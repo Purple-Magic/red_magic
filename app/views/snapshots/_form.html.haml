@@ -1,0 +1,8 @@
+= form_with(model: @snapshot, remote: true, class:  ) do |f|
+  .flex.items-center.justify-between
+    = f.submit 'Make a snapshot', data: { disable_with: false }, class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer'
+    %p.text-gray-600.text-xs.italic.ml-4
+      This button will start building of the Snapshot with all messages written on the Wall. Snapshots are building in the background with
+      %b Sidekiq.
+      Real-time appearing of a new snapshot is provided by
+      %b AnyCable.

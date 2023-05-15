@@ -35,6 +35,16 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libpq-dev \
     postgresql-client-$PG_MAJOR
 
+ARG NODE_MAJOR
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=tmpfs,target=/var/log \
+  curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash - && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    nodejs
+
+RUN npm install -g yarn
+
 # Application dependencies
 # We use an external Aptfile for this, stay tuned
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \

@@ -60,6 +60,7 @@ dip bash -c 'ls -al tmp/cache'
 
 # update gems or packages
 dip bundle install
+dip yarn install
 
 # run psql console
 dip psql

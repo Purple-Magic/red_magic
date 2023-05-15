@@ -84,7 +84,7 @@ services:
       retries: 30
 
   ws: &ws
-    image: anycable/anycable-go:1.3
+    image: anycable/anycable-go:1.2
     ports:
       - '8080:8080'
     environment: &ws_environment

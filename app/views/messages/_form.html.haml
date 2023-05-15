@@ -1,0 +1,14 @@
+= form_with(model: @message, remote: true, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" ) do |f|
+  .mb-4
+    = f.label :text, class: 'block text-gray-700 font-bold mb-2'
+    = f.text_field :text, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'Write your message on the Wall'
+    = f.label :photo, class: ' inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer mt-4', for: :photo, id: :photo_label do
+      Upload photo
+    = f.file_field :photo, class: :hidden, id: :photo, onchange: 'document.getElementById("photo_label").textContent = this.files[0].name'
+
+  .flex.items-center.justify-between
+    = f.submit 'Send', data: { disable_with: false }, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer'
+    %p.text-gray-600.text-xs.italic.ml-4
+      This message will be sent in real-time if
+      %b AnyCable
+      deployed and configured successfully

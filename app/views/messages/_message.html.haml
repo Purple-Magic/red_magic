@@ -1,0 +1,4 @@
+.message.mine.rounded.text-sm.lg:text-base.border.p-2.mt-2.flex.flex-col.max-w-lg
+  = message.text
+  - if message.photo.present?
+    = image_tag message.photo.url

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :podcasts
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  get "up" => "rails/health#show", as: :rails_health_check
 
-  root to: "welcome#index"
+  resources :messages
+  resources :snapshots, only: :create
+
+  root 'messages#index'
 end

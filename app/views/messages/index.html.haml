@@ -1,0 +1,17 @@
+.container.mx-auto.pt-5.pb-28.px-5.flex.h-screen
+  .min-w-full.flex.flex-row
+    %nav.border-r.border-red-100.mr-4{ class: "w-1/3" }
+      = render "form"
+
+      %div{ class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" }
+        = render 'snapshots/form'
+
+        = turbo_stream_from "snapshots"
+        %ul.flex.flex-col#snapshots
+          = render @snapshots
+
+    .overflow-y-scroll.h-full.flex-grow
+      .flex.flex-col.justify-end.min-h-full
+        .flex-col.flex.justify-end.mr-4.flex-grow#messages
+          = turbo_stream_from "messages"
+          = render @messages

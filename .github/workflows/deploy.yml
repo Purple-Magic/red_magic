@@ -1,0 +1,58 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    strategy:
+      fail-fast: false
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH for MAIN_HOST
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/production.key
+          chmod 600 ~/.ssh/production.key
+          cat >>~/.ssh/config <<END
+          Host ${{ secrets.MAIN_HOST }} ${{ secrets.ANYCABLE_GO_HOST }} ${{ secrets.REDIS_HOST }} ${{ secrets.DB_HOST }}
+            HostName $SSH_HOST
+            User root
+            IdentityFile ~/.ssh/production.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: root
+          SSH_KEY: ${{ secrets.PRODUCTION_SSH_KEY }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        with:
+          ruby-version: '3.1.0'
+
+      - name: Install mrsk
+        run: gem install mrsk
+
+      - uses: actions/checkout@v3
+      - name: MRSK deploy
+        env: 
+          DO_SPACES_KEY: ${{ secrets.DO_SPACES_KEY }}
+          DO_SPACES_SECRET: ${{ secrets.DO_SPACES_SECRET }}
+          DO_SPACES_BUCKET: ${{ secrets.DO_SPACES_BUCKET }}
+          DO_SPACES_REGION: ${{ secrets.DO_SPACES_REGION }}
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          MRSK_REGISTRY_PASSWORD: ${{ secrets.MRSK_REGISTRY_PASSWORD }}
+          MAIN_HOST: ${{ secrets.MAIN_HOST }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          ANYCABLE_GO_HOST: ${{ secrets.ANYCABLE_GO_HOST }}
+          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+          NEW_RELIC_KEY: ${{ secrets.NEW_RELIC_KEY }}
+        run: 'mrsk envify -v && mrsk deploy -v'
