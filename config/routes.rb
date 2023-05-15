@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :messages
   resources :snapshots, only: :create
 
-  root 'messages#index'
+  root 'podcasts#index'
 end
