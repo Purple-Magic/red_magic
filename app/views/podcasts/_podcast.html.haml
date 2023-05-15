@@ -1,5 +1,11 @@
-%tr
-  %td= podcast.title
-  %td= link_to 'Show', podcast
-  %td= link_to 'Edit', edit_podcast_path(podcast)
-  %td= link_to 'Destroy', podcast, method: :delete, data: { confirm: 'Are you sure?' }
+-# FIXME replace window.location.href with something
+%tr.cursor-pointer.hover:bg-gray-100{:onclick => "window.location.href='edit.html'"}
+  %td.py-2.px-4.border-b
+    %img.logo{:alt => "Podcast Logo", :src => "podcast1.jpg"}/
+  %td.py-2.px-4.border-b
+    = podcast.title
+  %td.py-2.px-4.border-b
+    %button.btn-edit.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.mr-2.rounded{ href: edit_podcast_path(podcast) }
+      Edit
+    %button.btn-delete.bg-red-500.hover:bg-red-700.text-white.font-bold.py-2.px-4.rounded{ href: podcast, method: :delete, data: { confirm: 'Are sure?' } }
+      Delete
