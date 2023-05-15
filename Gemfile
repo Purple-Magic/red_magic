@@ -79,3 +79,9 @@ gem "devise", "~> 4.9"
 gem "haml-rails", "~> 2.1"
 
 gem "pry", "~> 0.14.2"
+
+gem "anycable-rails", "~> 1.3"
+
+gem "sidekiq", "~> 7.1"
+
+gem "anycable-rails-jwt", "~> 0.1.0"

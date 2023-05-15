@@ -1,0 +1,14 @@
+%h1 Listing podcasts
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th
+      %th
+      %th
+
+  = turbo_stream_from "podcasts"
+  %tbody
+    = render @podcasts
+= link_to 'New Podcast', new_podcast_path
