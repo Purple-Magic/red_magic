@@ -1,7 +1,8 @@
-%h1 Editing podcast
+= turbo_frame_tag "podcast" do
+  %h1 Editing podcast
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Show', @podcast
-\|
-= link_to 'Back', podcasts_path
+  = link_to 'Show', @podcast
+  \|
+  = link_to 'Back', podcasts_path
