@@ -1,10 +1,10 @@
 -# FIXME replace window.location.href with something
 %tr.cursor-pointer.hover:bg-gray-100{:onclick => "window.location.href='#{podcast_path(podcast)}'"}
-  %td.py-2.px-4.border-b
-    %img.logo{:alt => "Podcast Logo", :src => "podcast1.jpg"}/
-  %td.py-2.px-4.border-b
+  %td.py-2.px-4.border-b.border-r
+    %img.logo{:alt => "Podcast Logo", :src => "podcast1.jpg"}
+  %td.py-2.px-4.border-b.border-r
     = podcast.title
-  %td.py-2.px-4.border-b
+  %td.py-2.px-4.border-b.border-r.text-right
     %button.btn-edit.bg-blue-500.hover:bg-blue-700.text-white.font-bold.py-2.px-4.mr-2.rounded{ href: edit_podcast_path(podcast) }
       Edit
     %button.btn-delete.bg-orange-500.hover:bg-orange-700.text-white.font-bold.py-2.px-4.rounded{ href: podcast, method: :delete, data: { confirm: 'Are sure?' } }
