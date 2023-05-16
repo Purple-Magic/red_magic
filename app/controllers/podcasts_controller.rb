@@ -21,7 +21,7 @@ class PodcastsController < ApplicationController
 
   # POST /podcasts or /podcasts.json
   def create
-    @podcast = Podcast.create!(podcast_params)
+    @podcast = Podcast.create! title: params[:podcast][:title], logo: params[:podcast][:logo]
 
     respond_to do |format|
       if @podcast.save

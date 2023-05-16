@@ -1,13 +1,13 @@
-= form_for @podcast do |f|
-  - if @podcast.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@podcast.errors.count, "error")} prohibited this podcast from being saved:"
-      %ul
-        - @podcast.errors.full_messages.each do |message|
-          %li= message
+.min-h-screen.flex.items-center.justify-center.bg-gray-100
+  .bg-white.p-8.rounded.shadow-md.max-w-md.w-full
+    = form_for @podcast do |f|
+      - if @podcast.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@podcast.errors.count, "error")} prohibited this podcast from being saved:"
+          %ul
+            - @podcast.errors.full_messages.each do |message|
+              %li= message
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .actions
-    = f.submit 'Save'
+      = text_input f, :title, placeholder: :title
+      = file_input f, :logo
+      = submit_button f, "Save"
