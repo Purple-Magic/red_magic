@@ -1,8 +1,6 @@
 = turbo_frame_tag "podcast" do
-  %h1 Editing podcast
-
-  = render 'form'
-
-  = link_to 'Show', @podcast
-  \|
-  = link_to 'Back', podcasts_path
+  .flex.items-left.justify-center
+    .bg-white.p-8.rounded.max-w-md.w-full
+      %h1.text-2xl.font-bold.mb-4
+        Editing podcast
+      = render 'form'
