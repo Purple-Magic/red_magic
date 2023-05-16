@@ -1,7 +1,8 @@
 -# FIXME replace window.location.href with something
 %tr.cursor-pointer.hover:bg-gray-100{:onclick => "window.location.href='#{podcast_path(podcast)}'"}
   %td.py-2.px-4.border-b.border-r
-    %img.logo{:alt => "Podcast Logo", :src => "podcast1.jpg"}
+    - if podcast.logo.present?
+      %img.logo{:alt => "Podcast Logo", :src => url_for(podcast.logo) }
   %td.py-2.px-4.border-b.border-r
     = podcast.title
   %td.py-2.px-4.border-b.border-r.text-right
