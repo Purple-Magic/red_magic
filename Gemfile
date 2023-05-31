@@ -30,6 +30,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails'
 end
 
 gem "enumerize", "~> 2.6"
@@ -43,3 +44,9 @@ gem "newrelic_rpm", "~> 9.1"
 gem "aws-sdk-s3", "~> 1.121"
 
 gem "devise", "~> 4.9"
+
+gem "webmock", "~> 3.18"
+
+gem "factory_bot_rails", "~> 6.2"
+
+gem "faker", "~> 3.2"

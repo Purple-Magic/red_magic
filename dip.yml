@@ -8,7 +8,7 @@ environment:
 compose:
   files:
     - .dockerdev/compose.yml
-  project_name: propermrsk
+  project_name: red_magic
 
 interaction:
   # This command spins up a Rails container with the required dependencies (such as databases),
@@ -58,13 +58,20 @@ interaction:
   psql:
     description: Run Postgres psql console
     service: postgres
-    default_args: propermrsk_development
+    default_args: red_magic_development
     command: psql -h postgres -U postgres
 
   'redis-cli':
     description: Run Redis console
     service: redis
     command: redis-cli -h redis
+
+  rspec:
+    description: Run RSpec unit tests for the Rails application
+    service: rails
+    command: bundle exec rspec
+    environment:
+      RAILS_ENV: test
 
 provision:
   # We need the `|| true` part because some docker-compose versions
