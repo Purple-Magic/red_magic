@@ -18,7 +18,7 @@ feature 'Creating a new Podcast', type: :feature do
 
     find(:label, 'Upload logo').click
 
-    attach_file('logo', attributes[:logo])
+    attach_file('logo', 'public/apple-touch-icon.png')
 
     click_button 'Save'
   end
