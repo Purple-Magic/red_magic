@@ -1,0 +1,9 @@
+name: "Run Lint"
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: ./.github/workflows/lint.yml

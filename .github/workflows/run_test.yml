@@ -1,0 +1,9 @@
+name: "Run Test"
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: ./.github/workflows/test.yml
