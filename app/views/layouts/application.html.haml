@@ -20,11 +20,14 @@
       -# FIXME Sign out button makes navbar wider because of form
       - if current_user.present?
         %li
-          %form.sign-out-form{:action => destroy_user_session_path, :method => "post"}
-            = hidden_field_tag :_method, :delete
-            = submit_tag 'Sign out', class: tailwind_navbar_button_style
+          = render(Tailwinds::Navbar::ButtonComponent.new(action: destroy_user_session_path, method: :delete)) do
+            Sign out
+          -# %form.sign-out-form{:action => destroy_user_session_path, :method => "post"}
+          -#   = hidden_field_tag :_method, :delete
+          -#   = submit_tag 'Sign out', class: tailwind_navbar_button_style
       - else
         %li
-          = link_to 'Sign in', new_user_session_path, class: tailwind_navbar_button_style
+          = render(Tailwinds::Navbar::ButtonComponent.new(href: new_user_session_path)) do
+            Sign In
   .container.mx-auto.p-4
     = yield
