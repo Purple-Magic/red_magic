@@ -1,8 +1,5 @@
 name: "Run Lint"
-on:
-  pull_request:
-    branches:
-      - main
+on: [push]
 
 jobs:
   build:
