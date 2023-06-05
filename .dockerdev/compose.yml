@@ -50,6 +50,22 @@ services:
     <<: *backend
     command: bundle exec rails
 
+  rspec:
+    <<: *backend
+    environment:
+      <<: *backend_environment
+      HUB_URL: http://chrome:4444/wd/hub
+    depends_on:
+      <<: *backend_depends_on
+      chrome:
+        condition: service_started
+        restart: true
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    volumes:
+      - /dev/shm:/dev/shm
+
   web:
     <<: *backend
     command: bundle exec rails server -b 0.0.0.0

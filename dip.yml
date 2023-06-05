@@ -68,8 +68,8 @@ interaction:
 
   rspec:
     description: Run RSpec unit tests for the Rails application
-    service: rails
-    command: bundle exec rspec
+    service: rspec
+    command: bundle exec rspec --tag type:feature,type:turbo
     environment:
       RAILS_ENV: test
 

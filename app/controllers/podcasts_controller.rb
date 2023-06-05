@@ -20,32 +20,16 @@ class PodcastsController < ApplicationController
   def edit
   end
 
-  # POST /podcasts or /podcasts.json
   def create
-    @podcast = Podcast.create! title: params[:podcast][:title], logo: params[:podcast][:logo]
+    @podcast = Podcast.create! **podcast_params
 
-    respond_to do |format|
-      if @podcast.save
-        format.html { redirect_to podcast_url(@podcast), notice: "Podcast was successfully created." }
-        format.json { render :show, status: :created, location: @podcast }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @podcast.errors, status: :unprocessable_entity }
-      end
-    end
+    render :show
   end
 
-  # PATCH/PUT /podcasts/1 or /podcasts/1.json
   def update
-    respond_to do |format|
-      if @podcast.update(podcast_params)
-        format.html { redirect_to podcast_url(@podcast), notice: "Podcast was successfully updated." }
-        format.json { render :show, status: :ok, location: @podcast }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @podcast.errors, status: :unprocessable_entity }
-      end
-    end
+    @podcast.update! **podcast_params
+
+    render :show
   end
 
   # DELETE /podcasts/1 or /podcasts/1.json
@@ -66,6 +50,6 @@ class PodcastsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def podcast_params
-      params.require(:podcast).permit(:title)
+      params.require(:podcast).permit(:title, :logo)
     end
 end

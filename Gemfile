@@ -20,10 +20,6 @@ gem "haml-rails"
 gem "tramway", '0.1.3.1'
 gem "view_component"
 
-group :development, :test do
-  gem "debug", platforms: %i[ mri windows ]
-end
-
 group :development do
   gem "web-console"
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
@@ -31,9 +27,10 @@ end
 
 group :test do
   gem "capybara"
+  gem "pry"
+  gem 'rspec-rails'
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem 'rspec-rails'
 end
 
 gem "enumerize", "~> 2.6"

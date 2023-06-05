@@ -16,6 +16,8 @@ require 'capybara/rspec'
 require 'webmock/rspec'
 require 'sidekiq/testing'
 
+WebMock.allow_net_connect!(allow_localhost: true)
+
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 begin
@@ -23,6 +25,23 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
+end
+
+Capybara.register_driver :chrome_headless do |app|
+  chrome_capabilities = ::Selenium::WebDriver::Remote::Capabilities.chrome('goog:chromeOptions' => { 'args': %w[no-sandbox headless disable-gpu window-size=1400,1400] })
+
+  if ENV['HUB_URL']
+    Capybara::Selenium::Driver.new(app,
+                                   browser: :remote,
+                                   url: ENV['HUB_URL'],
+                                   capabilities: chrome_capabilities,
+                                  )
+  else
+    Capybara::Selenium::Driver.new(app,
+                                   browser: :chrome,
+                                   capabilities: chrome_capabilities,
+                                  )
+  end
 end
 
 RSpec.configure do |config|
@@ -45,5 +64,18 @@ RSpec.configure do |config|
   unless ENV['FULLTRACE']
     config.filter_gems_from_backtrace 'railties', 'rack', 'rack-test'
     config.filter_gems_from_backtrace 'factory_bot'
+  end
+
+  config.before(:each, type: :turbo) do
+    config.include Rails.application.routes.url_helpers
+    config.include Capybara::DSL
+    Capybara.default_driver = :chrome_headless
+    Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:3000"
+    Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+    Capybara.server_port = 3000
+  end
+
+  config.before(:each, type: :feature) do
+    Capybara.default_driver = :rack_test
   end
 end

@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 feature 'Creating a new Podcast', type: :feature do
   let(:user) { create :user }
@@ -16,9 +17,9 @@ feature 'Creating a new Podcast', type: :feature do
 
     fill_in 'Title', with: attributes[:title]
 
-    find(:label, 'Upload logo').click
-
-    attach_file('logo', 'public/apple-touch-icon.png')
+    attach_file('public/apple-touch-icon.png') do
+      find(:label, 'Upload logo').click
+    end
 
     click_button 'Save'
   end
