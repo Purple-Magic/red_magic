@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CapybaraDefaults
   DEFAULT_WAIT = 5
 end

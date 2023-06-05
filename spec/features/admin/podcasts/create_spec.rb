@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'pry'
 
@@ -32,4 +34,3 @@ feature 'Creating a new Podcast', type: :feature do
     expect(page).to have_content attributes[:title]
   end
 end
-

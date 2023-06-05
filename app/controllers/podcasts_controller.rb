@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PodcastsController < ApplicationController
-  before_action :set_podcast, only: %i[ show edit update destroy ]
+  before_action :set_podcast, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /podcasts or /podcasts.json
@@ -8,8 +10,7 @@ class PodcastsController < ApplicationController
   end
 
   # GET /podcasts/1 or /podcasts/1.json
-  def show
-  end
+  def show; end
 
   # GET /podcasts/new
   def new
@@ -17,17 +18,16 @@ class PodcastsController < ApplicationController
   end
 
   # GET /podcasts/1/edit
-  def edit
-  end
+  def edit; end
 
   def create
-    @podcast = Podcast.create! **podcast_params
+    @podcast = Podcast.create!(**podcast_params)
 
     render :show
   end
 
   def update
-    @podcast.update! **podcast_params
+    @podcast.update!(**podcast_params)
 
     render :show
   end
@@ -37,19 +37,20 @@ class PodcastsController < ApplicationController
     @podcast.destroy
 
     respond_to do |format|
-      format.html { redirect_to podcasts_url, notice: "Podcast was successfully destroyed." }
+      format.html { redirect_to podcasts_url, notice: 'Podcast was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_podcast
-      @podcast = Podcast.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def podcast_params
-      params.require(:podcast).permit(:title, :logo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_podcast
+    @podcast = Podcast.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def podcast_params
+    params.require(:podcast).permit(:title, :logo)
+  end
 end

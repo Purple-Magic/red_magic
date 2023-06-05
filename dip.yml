@@ -73,6 +73,11 @@ interaction:
     environment:
       RAILS_ENV: test
 
+  rubocop:
+    description: Run Rubocop
+    service: rails
+    command: bundle exec rubocop
+
 provision:
   # We need the `|| true` part because some docker-compose versions
   # cannot down a non-existent container without an error,

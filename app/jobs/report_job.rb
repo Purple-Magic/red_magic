@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReportJob < ApplicationJob
   queue_as :default
 
@@ -6,6 +8,6 @@ class ReportJob < ApplicationJob
 
     Message.find_each { |message| text += message.text }
 
-    Snapshot.create! text: text
+    Snapshot.create! text:
   end
 end

@@ -9,7 +9,7 @@ feature 'Sign in' do
     sign_in user
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_selector("button[type=submit]", text: 'Sign out')
+    expect(page).to have_selector('button[type=submit]', text: 'Sign out')
   end
 
   scenario 'User cannot sign in with invalid credentials' do

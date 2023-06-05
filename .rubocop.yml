@@ -1,0 +1,39 @@
+Style/FormatStringToken:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*
+    - spec/**/*
+    - db/**/*
+    - config/routes.rb
+
+Metrics/MethodLength:
+  Max: 22
+  Exclude:
+    - db/migrate/**/*
+    - spec/features/**/*_spec.rb
+    - spec/services/**/*_spec.rb
+
+Metrics/AbcSize:
+  Max: 28
+  Exclude:
+    - db/**/*
+    - spec/features/**/*_spec.rb
+    - spec/services/**/*_spec.rb
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - bin/bundle
+    - db/schema.rb
+  TargetRubyVersion: 3.2
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/SlicingWithRange:
+  Enabled: false
