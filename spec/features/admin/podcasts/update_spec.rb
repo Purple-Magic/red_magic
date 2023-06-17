@@ -51,9 +51,7 @@ feature 'Podcast Update Page', type: :feature do
     scenario 'updates a podcast' do
       podcast.reload
 
-      attributes.each do |(_key, _value)|
-        expect(podcast.title).to eq attributes[:title].to_s
-      end
+      podcasts_expectations podcast, attributes
     end
 
     scenario 'renders show page' do
@@ -80,9 +78,7 @@ feature 'Podcast Update Page', type: :feature do
       click_on 'Save'
       podcast.reload
 
-      attributes.each do |(_key, _value)|
-        expect(podcast.title).to eq attributes[:title].to_s
-      end
+      podcasts_expectations podcast, attributes
     end
   end
 end

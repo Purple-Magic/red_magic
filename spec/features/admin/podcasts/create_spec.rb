@@ -18,10 +18,15 @@ feature 'Creating a new Podcast', type: :turbo do
     click_link 'New Podcast'
 
     fill_in 'Title', with: attributes[:title]
+    fill_in 'Ecwid store', with: attributes[:title]
 
     click_button 'Save'
 
     expect(Podcast.count).to eq(count + 1)
     expect(page).to have_content attributes[:email]
+
+    new_podcast = Podcast.last
+
+    podcasts_expectations new_podcast, attributes
   end
 end
