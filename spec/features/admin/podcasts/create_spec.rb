@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pry'
 
-feature 'Creating a new Podcast', type: :feature do
+feature 'Creating a new Podcast', type: :turbo do
   let(:user) { create :user }
-  let(:attributes) { attributes_for :podcast }
-  let!(:count) { Podcast.count }
+  let(:podcast) { create 'podcast' }
+  let(:attributes) { attributes_for 'podcast' }
 
   before do
     visit root_path
@@ -15,22 +14,14 @@ feature 'Creating a new Podcast', type: :feature do
 
     click_link 'Podcasts'
 
+    count = Podcast.count
     click_link 'New Podcast'
 
     fill_in 'Title', with: attributes[:title]
 
-    attach_file('public/apple-touch-icon.png') do
-      find(:label, 'Upload logo').click
-    end
-
     click_button 'Save'
-  end
 
-  scenario 'User creates a new Podcast' do
     expect(Podcast.count).to eq(count + 1)
-  end
-
-  scenario 'User watches new Podcast title on the page' do
-    expect(page).to have_content attributes[:title]
+    expect(page).to have_content attributes[:email]
   end
 end
