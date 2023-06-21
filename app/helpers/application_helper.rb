@@ -4,9 +4,10 @@ module ApplicationHelper
   include TailwindHelpers
 
   def navbar
-    tramway_navbar brand: 'RED MAGIC' do |nav|
+    tramway_navbar title: 'RED MAGIC', background: { color: '#0000ff', intensity: 500 } do |nav|
       nav.left do
-        nav.item 'Podcasts', podcasts_path
+        nav.item 'Users', '/users'
+        nav.item 'Podcasts', '/podcasts'
       end
 
       nav.right do
