@@ -19,7 +19,7 @@ gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
-# gem 'tramway', '0.1.5'
+# gem 'tramway', '0.1.6'
 gem 'tramway', path: 'vendor/tramway'
 gem 'view_component'
 
