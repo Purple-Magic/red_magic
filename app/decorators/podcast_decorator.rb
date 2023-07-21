@@ -8,6 +8,6 @@ class PodcastDecorator < Tramway::BaseDecorator
       { name: date, date: object.public_send(date) }
     end
 
-    render TableComponent.new(table)
+    render(TableComponent.new(table))
   end
 end

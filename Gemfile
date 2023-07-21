@@ -19,11 +19,12 @@ gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
-gem 'tramway', '0.2.1.2'
-# gem 'tramway', path: 'vendor/tramway'
+# gem 'tramway', '0.2.1.3'
+gem 'tramway', path: 'vendor/tramway'
 gem 'view_component'
 
 group :development do
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'error_highlight', '>= 0.4.0', platforms: [:ruby]
   gem 'rubocop', require: false
   gem 'web-console'

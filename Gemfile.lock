@@ -94,6 +94,14 @@ GIT
       thor (~> 1.0)
       zeitwerk (~> 2.6)
 
+PATH
+  remote: vendor/tramway
+  specs:
+    tramway (0.2.1.2)
+      haml-rails
+      rails (~> 7)
+      view_component
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -149,6 +157,9 @@ GEM
       rexml
     crass (1.0.6)
     date (3.3.3)
+    debug (1.8.0)
+      irb (>= 1.5.0)
+      reline (>= 0.3.1)
     devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -317,10 +328,6 @@ GEM
     thor (1.2.1)
     tilt (2.1.0)
     timeout (0.3.2)
-    tramway (0.2.1.2)
-      haml-rails
-      rails (~> 7)
-      view_component
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -364,6 +371,7 @@ DEPENDENCIES
   aws-sdk-s3 (~> 1.121)
   bootsnap
   capybara
+  debug
   devise (~> 4.9)
   enumerize (~> 2.6)
   error_highlight (>= 0.4.0)
@@ -384,7 +392,7 @@ DEPENDENCIES
   sidekiq (~> 7.0)
   sprockets-rails
   stimulus-rails
-  tramway (= 0.2.1.2)
+  tramway!
   turbo-rails
   tzinfo-data
   view_component
