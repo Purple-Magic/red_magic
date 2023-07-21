@@ -25,6 +25,10 @@ Metrics/AbcSize:
     - spec/features/**/*_spec.rb
     - spec/services/**/*_spec.rb
 
+Lint/MissingSuper:
+  Exclude:
+    - app/components/**/*.rb
+
 AllCops:
   NewCops: enable
   Exclude:

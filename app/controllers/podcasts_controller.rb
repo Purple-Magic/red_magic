@@ -5,7 +5,7 @@ class PodcastsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @podcasts = Podcast.all
+    @podcasts = tramway_decorate Podcast.all
   end
 
   def show; end

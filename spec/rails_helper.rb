@@ -59,14 +59,10 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.infer_spec_type_from_file_location!
-  config.filter_rails_from_backtrace!
 
   config.include FactoryBot::Syntax::Methods
 
-  unless ENV['FULLTRACE']
-    config.filter_gems_from_backtrace 'railties', 'rack', 'rack-test'
-    config.filter_gems_from_backtrace 'factory_bot'
-  end
+  config.filter_gems_from_backtrace 'factory_bot' unless ENV['FULLTRACE']
 
   config.before(:each, type: :turbo) do
     config.include Rails.application.routes.url_helpers
