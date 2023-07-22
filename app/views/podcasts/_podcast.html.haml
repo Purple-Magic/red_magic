@@ -2,7 +2,7 @@
 %tr.cursor-pointer.hover:bg-gray-100
   %td.py-2.px-4.border-b.border-r
     - if podcast.logo.present?
-      %img.logo{:alt => "Podcast Logo", :src => url_for(podcast.logo) }
+      %img.logo{alt: "Podcast Logo", src: url_for(podcast.logo), width: '100px' }
   %td.py-2.px-4.border-b.border-r
     = link_to podcast_path(podcast) do
       = podcast.title
