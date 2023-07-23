@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Tramway.configure do |config|
-  config.entities = [:podcast, :episode]
+  config.entities = %i[user podcast episode]
 end

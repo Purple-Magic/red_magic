@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/purple-magic/tramway.git
+  revision: 5c5c7f5e5b0ef7f93cf3891471e723e3fbd18698
+  branch: config
+  specs:
+    tramway (0.2.1.3)
+      haml-rails
+      rails (~> 7)
+      view_component
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: 732a4748b361bfdadb042fc62b4c608b1a6eef47
   ref: main
@@ -93,14 +103,6 @@ GIT
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.6)
-
-PATH
-  remote: vendor/tramway
-  specs:
-    tramway (0.2.1.3)
-      haml-rails
-      rails (~> 7)
-      view_component
 
 GEM
   remote: https://rubygems.org/
