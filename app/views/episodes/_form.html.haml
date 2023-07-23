@@ -1,0 +1,14 @@
+= form_for @episode do |f|
+  - if @episode.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@episode.errors.count, "error")} prohibited this episode from being saved:"
+      %ul
+        - @episode.errors.full_messages.each do |message|
+          %li= message
+
+  = text_input f, :title, placeholder: :title
+  = text_input f, :podcast_id
+  .flex.justify-end
+    = submit_button f, "Save"
+    %button.btn.btn-delete.bg-orange-500.hover:bg-orange-700.text-white.font-bold.py-2.px-4.ml-2.rounded{ onclick: 'document.referrer' }
+      Back

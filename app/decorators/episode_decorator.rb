@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+class EpisodeDecorator < Tramway::BaseDecorator
+  delegate_attributes :title
+
+  def dates
+    table = %i[created_at updated_at].map do |date|
+      { name: date, date: object.public_send(date) }
+    end
+
+    render(TableComponent.new(table))
+  end
+end
